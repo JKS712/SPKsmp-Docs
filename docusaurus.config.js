@@ -30,7 +30,7 @@ const config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'zh-Hant',
-    locales: ['zh-Hant','zh-Hans', 'en'],
+    locales: ['zh-Hant'],
   },
 
   presets: [
@@ -40,6 +40,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          showLastUpdateTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -47,6 +48,7 @@ const config = {
         },
         blog: {
           showReadingTime: false,
+          showLastUpdateTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -58,12 +60,14 @@ const config = {
       }),
     ],
   ],
-  
+  plugins: [
+    require.resolve('docusaurus-plugin-image-zoom')
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      // image: 'img/docusaurus-social-card.jpg',
+      image: 'img/logooo.webp',
       navbar: {
         title: 'Sparkle 花火伺服器指南',
         logo: {
@@ -139,16 +143,26 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
-    }),
-    themes: [
-      [
-        require.resolve("@easyops-cn/docusaurus-search-local"),
-        /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-        {
-          hashed: true,
+      zoom: {
+        selector: '.markdown :not(em) > img',
+        background: {
+          light: 'rgb(255, 255, 255)',
+          dark: 'rgb(50, 50, 50)'
         },
-      ],
+        config: {
+          // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+        }
+      }
+    }),
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      {
+        hashed: true,
+      },
     ],
+  ],
 };
 
 
